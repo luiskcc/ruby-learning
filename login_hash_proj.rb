@@ -84,8 +84,3 @@ end
 
 
 
-# x = (1..100)
-
-# while true do
-#     puts x.to_a
-# end
