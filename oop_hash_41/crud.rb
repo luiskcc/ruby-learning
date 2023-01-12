@@ -22,7 +22,15 @@ users = [
 ]
 
 
+    def create_hash_digest(password)
+        BCrypt::Password.create(password)
+    end
 
+    def verify_hash_digest(password)
+        BCrypt::Password.new(password)
+    end
+
+    def create_secure_users(list_of_users)
         list_of_users.each do |user_record|
         user_record[:password] = create_hash_digest(user_record[:password])
         end
@@ -30,7 +38,12 @@ users = [
     end
 
 
+    # new_users = create_secure_users(users)
+    # puts new_users
 
+
+
+    def authenticate_user(username, password, list_of_users)
         list_of_users.each do |user_record|
             if user_record[:username] == username && 
                 verify_hash_digest(user_record[:password]) == password
@@ -42,7 +55,7 @@ users = [
     end
 
 
-
+    # puts authenticate_user("luis", "1", new_users)
 
 
 end
